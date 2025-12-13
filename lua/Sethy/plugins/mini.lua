@@ -18,6 +18,10 @@ return {
                 -- tsx, jsx, html , svelte comment support
                 options = {
                     custom_commentstring = function()
+                        -- For commenting support in latte files
+                        if vim.bo.filetype == 'latte' or vim.bo.filetype == 'latte.php.html' then
+                            return '{* %s *}'
+                        end
                         return require('ts_context_commentstring.internal').calculate_commentstring({ key =
                             'commentstring' })
                             or vim.bo.commentstring
