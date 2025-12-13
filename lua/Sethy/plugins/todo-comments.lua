@@ -7,22 +7,21 @@ return {
 		local todo_comments = require("todo-comments")
 
 		todo_comments.setup({
-			keywords = {
+             keywords = {
 				FIX = {
-					icon = "Ω ", -- icon used for the sign, and in search results
+					icon = " ", -- icon used for the sign, and in search results
 					color = "error", -- can be a hex color, or a named color (see below)
 					alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
 					-- signs = false, -- configure signs for some keywords individually
 				},
-				TODO = { icon = "✓ ", color = "info" , alt = {"Personal"} },
+				TODO = { icon = " ", color = "info" , alt = {"Personal"} },
 				HACK = { icon = " ", color = "warning", alt = { "DON SKIP" } },
-				WARN = { icon = "⚠ ", color = "warning", alt = { "WARNING", "XXX" } },
+				WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
 				PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-				NOTE = { icon = "ℹ ", color = "hint", alt = { "INFO", "READ", "COLORS", "Custom" } },
+				NOTE = { icon = " ", color = "hint", alt = { "INFO", "READ", "COLORS", "Custom" } },
 				TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
 				FORGETNOT = { icon = " ", color = "hint" },
-			},
-            -- Patterns for hl markdown support
+			},           -- Patterns for hl markdown support
             highlight = {
                 multiline = true,
                 multiline_pattern = "^.",

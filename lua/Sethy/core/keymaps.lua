@@ -62,8 +62,8 @@ vim.keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>") --open current tab in new
 
 --split management
 -- split window vertically
-vim.keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
-vim.keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })
+vim.keymap.set("n", "<leader>vs", "<C-w>v", { desc = "Split window vertically" })
+vim.keymap.set("n", "<leader>hs", "<C-w>s", { desc = "Split window horizontally" })
 -- split window horizontally
 vim.keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" }) -- make split windows equal width & height
 -- close current split window
