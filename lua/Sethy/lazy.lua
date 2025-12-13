@@ -14,7 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup(
     {
         { import = "Sethy.plugins" },
-        -- { import = "Sethy.plugins.lsp" },
+        { import = "Sethy.plugins.lsp" },
     },
     {
         checker = {
