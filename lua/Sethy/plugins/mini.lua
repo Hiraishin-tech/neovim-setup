@@ -69,7 +69,7 @@ return {
                 -- ysaw(ys), saaw(sa) surround a word with whitespace
                 -- yss_ surround entire line
                 mappings = {
-                    add = 'sa',          -- Add surrounding in Normal and Visual modes
+                    add = 'gsa',          -- Add surrounding in Normal and Visual modes (added g to avoid input lag for 's')
                     delete = 'ds',       -- Delete surrounding
                     find = '',           -- Disable find
                     find_left = '',      -- Disable find left
