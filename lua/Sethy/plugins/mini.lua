@@ -1,6 +1,6 @@
 return {
     -- Mini Nvim
-    {"echasnovski/mini.nvim", version = false },
+    { "echasnovski/mini.nvim", version = false },
     -- Comments
     {
         'echasnovski/mini.comment',
@@ -22,8 +22,10 @@ return {
                         if vim.bo.filetype == 'latte' or vim.bo.filetype == 'latte.php.html' then
                             return '{* %s *}'
                         end
-                        return require('ts_context_commentstring.internal').calculate_commentstring({ key =
-                            'commentstring' })
+                        return require('ts_context_commentstring.internal').calculate_commentstring({
+                                key =
+                                'commentstring'
+                            })
                             or vim.bo.commentstring
                     end,
                 },
@@ -63,19 +65,19 @@ return {
                 highlight_duration = 300,
                 -- Module mappings. Use `''` (empty string) to disable one.
                 -- INFO:
-                -- ysiw surround inner word with no whitespace
-                -- ysaw surround a word with whitespace
+                -- ysiw(ys), saiw(sa) surround inner word with no whitespace
+                -- ysaw(ys), saaw(sa) surround a word with whitespace
                 -- yss_ surround entire line
                 mappings = {
-                    add = 'ys',            -- Add surrounding in Normal and Visual modes
-                    delete = 'ds',         -- Delete surrounding
-                    find = '',             -- Disable find
-                    find_left = '',        -- Disable find left
-                    highlight = '',        -- Disable highlight
-                    replace = 'cs',        -- Replace surrounding
-                    update_n_lines = '',   -- Disable update_n_lines
-                    suffix_last = 'l',     -- Suffix to search with "prev" method
-                    suffix_next = 'n',     -- Suffix to search with "next" method
+                    add = 'sa',          -- Add surrounding in Normal and Visual modes
+                    delete = 'ds',       -- Delete surrounding
+                    find = '',           -- Disable find
+                    find_left = '',      -- Disable find left
+                    highlight = '',      -- Disable highlight
+                    replace = 'cs',      -- Replace surrounding
+                    update_n_lines = '', -- Disable update_n_lines
+                    suffix_last = 'l',   -- Suffix to search with "prev" method
+                    suffix_next = 'n',   -- Suffix to search with "next" method
                 },
                 -- Number of lines within which surrounding is searched
                 n_lines = 20,
@@ -97,26 +99,26 @@ return {
         end,
     },
     -- Get rid of whitespace
-        {
-            "echasnovski/mini.trailspace",
-            event = { "BufReadPost", "BufNewFile" },
-            config = function()
-                local miniTrailspace = require("mini.trailspace")
+    {
+        "echasnovski/mini.trailspace",
+        event = { "BufReadPost", "BufNewFile" },
+        config = function()
+            local miniTrailspace = require("mini.trailspace")
 
-                miniTrailspace.setup({
-                    only_in_normal_buffers = true,
-                })
-                vim.keymap.set("n", "<leader>cw", function() miniTrailspace.trim() end, { desc = "Erase Whitespace" })
+            miniTrailspace.setup({
+                only_in_normal_buffers = true,
+            })
+            vim.keymap.set("n", "<leader>cw", function() miniTrailspace.trim() end, { desc = "Erase Whitespace" })
 
-                -- Ensure highlight never reappears by removing it on CursorMoved
-                vim.api.nvim_create_autocmd("CursorMoved", {
-                    pattern = "*",
-                    callback = function()
-                        require("mini.trailspace").unhighlight()
-                    end,
-                })
-            end,
-        },
+            -- Ensure highlight never reappears by removing it on CursorMoved
+            vim.api.nvim_create_autocmd("CursorMoved", {
+                pattern = "*",
+                callback = function()
+                    require("mini.trailspace").unhighlight()
+                end,
+            })
+        end,
+    },
     -- Split & join
     {
         "echasnovski/mini.splitjoin",
@@ -125,7 +127,7 @@ return {
             miniSplitJoin.setup({
                 mappings = { toggle = "" }, -- Disable default mapping
             })
-            vim.keymap.set({"n", "x"}, "<leader>sj", function() miniSplitJoin.join() end, { desc = "Join arguments" })
+            vim.keymap.set({ "n", "x" }, "<leader>sj", function() miniSplitJoin.join() end, { desc = "Join arguments" })
             vim.keymap.set({ "n", "x" }, "<leader>sk", function() miniSplitJoin.split() end, { desc = "Split arguments" })
         end,
     },

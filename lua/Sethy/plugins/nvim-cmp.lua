@@ -59,7 +59,7 @@ return {
         }
         -- Returns the current column number.
         local column = function()
-            local _line, col = unpack(vim.api.nvim_win_get_cursor(0))
+            local _line, col = table.unpack(vim.api.nvim_win_get_cursor(0))
             return col
         end
 
@@ -321,7 +321,7 @@ return {
                     end
                 end, { 'i', 's' }),
 
-                ['<Tab>'] = cmp.mapping(function(_fallback)
+                ['<Tab>'] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         -- if there is only one completion candidate then use it.
                         -- local entries = cmp.get_entries()

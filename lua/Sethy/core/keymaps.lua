@@ -54,10 +54,10 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- tab stuff
-vim.keymap.set("n", "<leader>to", "<cmd>tabnew<CR>")   --open new tab
+vim.keymap.set("n", "<leader>tn", "<cmd>tabnew<CR>")   --open new tab
 vim.keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>") --close current tab
-vim.keymap.set("n", "<leader>tn", "<cmd>tabn<CR>")     --go to next
-vim.keymap.set("n", "<leader>tp", "<cmd>tabp<CR>")     --go to pre
+-- vim.keymap.set("n", "<leader>tn", "<cmd>tabn<CR>")     --go to next
+-- vim.keymap.set("n", "<leader>tp", "<cmd>tabp<CR>")     --go to pre
 vim.keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>") --open current tab in new tab
 
 --split management
@@ -75,3 +75,13 @@ vim.keymap.set("n", "<leader>fp", function()
   vim.fn.setreg("+", filePath) -- Copy the file path to the clipboard register
   print("File path copied to clipboard: " .. filePath)
 end, { desc = "Copy file path to clipboard" })
+
+-- Toggle LSP diagnostics visibility
+local isLspDiagnosticsVisible = true
+vim.keymap.set("n", "<leader>lx", function()
+    isLspDiagnosticsVisible = not isLspDiagnosticsVisible
+    vim.diagnostic.config({
+        virtual_text = isLspDiagnosticsVisible,
+        underline = isLspDiagnosticsVisible
+    })
+end, { desc = "Toggle LSP diagnostics" })

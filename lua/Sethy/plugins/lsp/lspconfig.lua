@@ -26,8 +26,8 @@ return {
                 opts.desc = "Show LSP implementations"
                 vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
 
-                opts.desc = "Show LSP type definitions"
-                vim.keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts)
+                -- opts.desc = "Show LSP type definitions"
+                -- vim.keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- gt interferes with to the next tab built in motion
 
                 opts.desc = "See available code actions"
                 vim.keymap.set({ "n", "v" }, "<leader>vca", function()
@@ -63,14 +63,15 @@ return {
             [vim.diagnostic.severity.INFO] = " ",
         }
 
-        -- Set diagnostic config
+        -- Set diagnostic config with all icons
         vim.diagnostic.config({
             signs = {
-                text = signs,
+                text = signs, -- Enable signs in the gutter 
             },
-            virtual_text = true,
-            underline = true,
-            update_in_insert = false,
+            -- For linting
+            virtual_text = true, -- Specify Enable virtual text for diagnostics
+            underline = true, -- Specify Underline diagnostics
+            update_in_insert = false, -- Keep diagnostics active in insert mode
         })
 
         -- Setup servers
