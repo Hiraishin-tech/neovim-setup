@@ -51,20 +51,20 @@ return {
                 },
                 layouts = {
                     select = {
-                            preview = false,
-                            layout = {
-                                backdrop = false,
-                                width = 0.6,
-                                min_width = 80,
-                                height = 0.4,
-                                min_height = 10,
-                                box = "vertical",
-                                border = "rounded",
-                                title = "{title}",
-                                title_pos = "center",
-                                { win = "input", height = 1, border = "bottom" },
-                                { win = "list", border = "none" },
-                                { win = "preview", title = "{preview}", width = 0.6, height = 0.4, border = "top" },
+                        preview = false,
+                        layout = {
+                            backdrop = false,
+                            width = 0.6,
+                            min_width = 80,
+                            height = 0.4,
+                            min_height = 10,
+                            box = "vertical",
+                            border = "rounded",
+                            title = "{title}",
+                            title_pos = "center",
+                            { win = "input", height = 1, border = "bottom" },
+                            { win = "list", border = "none" },
+                            { win = "preview", title = "{preview}", width = 0.6, height = 0.4, border = "top" },
                         }
                     },
                     telescope = {
@@ -104,6 +104,32 @@ return {
                                 box = "horizontal",
                                 { win = "list", border = "none" },
                                 { win = "preview", title = "{preview}", width = 0.5, border = "left" },
+                            },
+                        },
+                    },
+                },
+                sources = {
+                    explorer = {
+                        win = {
+                            list = {
+                                keys = {
+                                    ["<CR>"] = "confirm",          -- open / enter dir
+                                    ["-"]    = "explorer_up",      -- parent dir
+                                    ["H"]    = "explorer_close",   -- close dir
+                                    ["L"]    = "confirm",          -- open
+                                    ["q"]    = "close",            -- quit explorer
+
+                                    ["R"]    = "explorer_update",  -- refresh
+                                    ["."]    = "toggle_hidden",
+
+                                    -- ["s"]    = "open_split",
+                                    -- ["v"]    = "open_vsplit",
+                                    -- ["t"]    = "open_tab",
+
+                                    ["yy"]   = { "explorer_yank", mode = { "n", "x" } },
+
+                                    ["g?"]   = "help",
+                                },
                             },
                         },
                     },
@@ -149,7 +175,7 @@ return {
         keys = {
             { "<leader>lg", function() require("snacks").lazygit() end, desc = "Lazygit" },
             { "<leader>gl", function() require("snacks").lazygit.log() end, desc = "Lazygit Logs" },
-            -- { "<leader>ex", function() require("snacks").explorer() end, desc = "Open Snacks Explore" },
+            { "<leader>es", function() require("snacks").explorer() end, desc = "Open Snacks Explore" },
             { "<leader>rN", function() require("snacks").rename.rename_file() end, desc = "Fast Rename Current File" },
             { "<leader>dB", function() require("snacks").bufdelete() end, desc = "Delete or Close Buffer  (Confirm)" },
 

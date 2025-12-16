@@ -194,7 +194,12 @@ return {
                 },
             },
         })
+        -- Setup clangd for C/C++
+        -- vim.lsp.config("clangd", {
 
+        -- })
+
+        vim.lsp.enable("clangd")
         vim.lsp.enable("lua_ls")
         vim.lsp.enable("emmet_language_server")
         vim.lsp.enable("emmet_ls")
