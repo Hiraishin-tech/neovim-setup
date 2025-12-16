@@ -11,6 +11,9 @@ return {
                 -- ["<C-c>"] = false, -- prevent from closing Oil as <C-c> is esc key
 				["<M-h>"] = "actions.select_split", -- Alt + h open file in horizontal split
                 ["q"] = "actions.close",
+                -- shift + l/h like for the mini plugin
+                ["L"] = "actions.select",
+                ["H"] = {"actions.parent", mode="n"}
 			},
             delete_to_trash = true, -- files and directories deleted will go to trash bin
 			view_options = {

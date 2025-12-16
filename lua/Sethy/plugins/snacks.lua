@@ -110,10 +110,20 @@ return {
                 },
                 sources = {
                     explorer = {
+                        layout = {
+                            layout = {
+                                -- smaller width of the snacks explorer window and the position
+                                width = 30,
+                                position = "left", -- right, left etc.
+                                -- TODO: change so the file in the explorer will be open as a new tab and if its possible try to resize the explorer window dynamically
+                                -- by e. g. ctrl + ->/<-
+                            }
+                        },
                         win = {
                             list = {
                                 keys = {
                                     ["<CR>"] = "confirm",          -- open / enter dir
+                                    -- ["<CR>"] = "open_tab",          -- opens a new tab but not working rn
                                     ["-"]    = "explorer_up",      -- parent dir
                                     ["H"]    = "explorer_close",   -- close dir
                                     ["L"]    = "confirm",          -- open

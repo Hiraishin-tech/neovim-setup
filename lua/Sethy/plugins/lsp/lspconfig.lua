@@ -30,7 +30,7 @@ return {
                 -- vim.keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- gt interferes with to the next tab built in motion
 
                 opts.desc = "See available code actions"
-                vim.keymap.set({ "n", "v" }, "<leader>vca", function()
+                vim.keymap.set({ "n", "v" }, "<leader>qf", function() -- quick fix 'qf'
                     vim.lsp.buf.code_action()
                 end, opts)
 

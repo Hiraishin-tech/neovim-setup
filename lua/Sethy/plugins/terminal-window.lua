@@ -2,6 +2,7 @@ return {
     {
         'akinsho/toggleterm.nvim',
         version = "*",
+        -- NOTE: in the toggleterm terminal I can scroll by Ctrl + \ Ctrl + n then moving like in VIM hjkl, ctrl + u/d. Or by using mouse
         keys = {
             -- { "<C-/>", "<cmd>ToggleTerm<cr>", desc = "Toggle terminal", mode = { "n", "t" } },
             -- { "<leader>tt", "<cmd>ToggleTerm direction=horizontal<cr>", desc = "Toggle terminal", mode = { "n", "t" } },  -- leader+tt
