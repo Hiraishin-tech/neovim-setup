@@ -18,7 +18,9 @@ vim.keymap.set("v", ">", ">gv", opts)
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
 -- remember yanked
-vim.keymap.set("v", "p", '"_dp', opts) -- Prevents pasting from replacing the clipboard in visual mode
+-- vim.keymap.set("v", "p", '"_dp', opts) -- Prevents pasting from replacing the clipboard in visual mode. There was a small problem with pasting in visual mode.
+
+vim.keymap.set("i", "<C-h>", "<C-w>", { noremap = true, silent = true })
 
 -- Copies or Yank to system clipboard
 vim.keymap.set("n", "<leader>Y", [["+Y]], opts)

@@ -7,7 +7,8 @@ return {
             -- { "<C-/>", "<cmd>ToggleTerm<cr>", desc = "Toggle terminal", mode = { "n", "t" } },
             -- { "<leader>tt", "<cmd>ToggleTerm direction=horizontal<cr>", desc = "Toggle terminal", mode = { "n", "t" } },  -- leader+tt
             {
-                "<leader>tt",
+                -- "<leader>tt", -- When I am in the terminal there is a problem that when I do space there is a input lag due to neovim waiting after space.
+                "<A-t>", -- Alt + t 
                 function()
                     -- Directory of the current file
                     local dir = vim.fn.expand("%:p:h")
