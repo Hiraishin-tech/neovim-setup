@@ -258,4 +258,12 @@ return {
             -- })
         end,
     },
+    -- NOTE: catpuccin
+    "catppuccin/nvim",
+    name = "catpuccin",
+    config = function ()
+       require("catpuccin").setup({
+            flavour = "auto", -- can be changed to frappe, macchiato, latte, mocha
+        })
+    end
 }

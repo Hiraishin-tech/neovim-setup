@@ -49,8 +49,8 @@ return {
                 opts.desc = "Restart LSP"
                 vim.keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
 
-                vim.keymap.set("i", "<C-h>", function()
-                    vim.lsp.buf.signature_help()
+                vim.keymap.set("i", "<C-k>", function()
+                    vim.lsp.buf.signature_help() -- for hinting in functions in brackets what does the function/method does. In vscode it's ctrl + shift + space
                 end, opts)
             end,
         })

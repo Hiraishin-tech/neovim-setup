@@ -288,6 +288,7 @@ return {
                 ['<C-p>'] = cmp.mapping(select_prev_item),
                 ['<Down>'] = cmp.mapping(select_next_item),
                 ['<Up>'] = cmp.mapping(select_prev_item),
+                ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions menu
 
                 ['<C-y>'] = cmp.mapping(function(fallback)
                     if cmp.visible() then
