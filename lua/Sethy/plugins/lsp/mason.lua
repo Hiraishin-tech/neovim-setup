@@ -47,6 +47,7 @@ return {
                 "emmet_language_server",
                 -- "eslint",
                 "marksman",
+                "intelephense", -- for php lsp
             },
             -- auto install configured servers (with lspconfig)
             automatic_installation = true,
@@ -60,6 +61,8 @@ return {
                 "pylint",
                 "clangd",
                 "denols",
+                "phpstan",
+                "php-cs-fixer",
                 -- { 'eslint_d', version = '13.1.2' },
             },
 

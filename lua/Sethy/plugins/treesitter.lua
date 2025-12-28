@@ -29,6 +29,8 @@ return {
                     "scss",
                     "python",
                     "php",
+                    -- "latte",
+                    -- "neon",
                     "phpdoc",
                     "http",
                     "prisma",

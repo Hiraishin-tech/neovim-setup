@@ -142,6 +142,7 @@ return {
                 "scss",
                 "less",
                 "svelte",
+                "latte",
             },
         })
 
@@ -194,6 +195,19 @@ return {
                 },
             },
         })
+
+        -- php
+        vim.lsp.config("intelephense", {
+            filetypes = { "php", "phtml" },
+            settings = {
+                intelephense = {
+                    files = {
+                        maxSize = 1000000,
+                    },
+                },
+            },
+        })
+
         -- Setup clangd for C/C++
         -- vim.lsp.config("clangd", {
 
@@ -207,5 +221,6 @@ return {
         vim.lsp.enable("gopls")
         vim.lsp.enable("astro")
         vim.lsp.enable("tailwindcss")
+        vim.lsp.enable("intelephense")
     end,
 }
