@@ -13,6 +13,10 @@ return {
 		local actions = require("telescope.actions")
 		local builtin = require("telescope.builtin")
 
+        local pickers = require("telescope.pickers")
+        local finders = require("telescope.finders")
+        local conf = require("telescope.config").values
+
 		telescope.load_extension("fzf")
 		telescope.load_extension("themes")
 
@@ -38,8 +42,48 @@ return {
 			},
 		})
 
+        local function tabs_picker()
+            local tabs = vim.api.nvim_list_tabpages()
+            local results = {}
+
+            for _, tab in ipairs(tabs) do
+                local win = vim.api.nvim_tabpage_get_win(tab)
+                local buf = vim.api.nvim_win_get_buf(win)
+                local name = vim.api.nvim_buf_get_name(buf)
+                table.insert(results, {
+                    tab = tab,
+                    name = name ~= "" and vim.fn.fnamemodify(name, ":t") or "[No Name]",
+                })
+            end
+
+            pickers.new({}, {
+                prompt_title = "Tabs",
+                finder = finders.new_table({
+                    results = results,
+                    entry_maker = function(entry)
+                        return {
+                            value = entry.tab,
+                            display = entry.name,
+                            ordinal = entry.name,
+                        }
+                    end,
+                }),
+                sorter = conf.generic_sorter({}),
+                attach_mappings = function(_, map)
+                    map("i", "<CR>", function(prompt_bufnr)
+                        local selection = require("telescope.actions.state").get_selected_entry()
+                        require("telescope.actions").close(prompt_bufnr)
+                        vim.api.nvim_set_current_tabpage(selection.value)
+                    end)
+                    return true
+                end,
+            }):find()
+        end
+
 		-- Keymaps
 		vim.keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<CR>", { desc = "Fuzzy find recent files" })
+        vim.keymap.set('n', "<leader>fb", builtin.buffers, { desc = "Telescope buffers" }) -- Can also be accessed through :Telescope buffers
+        vim.keymap.set('n', "<leader>ft", tabs_picker, { desc = "Telescope tabs" })
 		vim.keymap.set("n", "<leader>pWs", function()
 			local word = vim.fn.expand("<cWORD>")
 			builtin.grep_string({ search = word })
