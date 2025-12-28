@@ -16,6 +16,8 @@ return {
         local pickers = require("telescope.pickers")
         local finders = require("telescope.finders")
         local conf = require("telescope.config").values
+        local previewers = require("telescope.previewers")
+        local action_state = require("telescope.actions.state")
 
 		telescope.load_extension("fzf")
 		telescope.load_extension("themes")
@@ -46,13 +48,17 @@ return {
             local tabs = vim.api.nvim_list_tabpages()
             local results = {}
 
-            for _, tab in ipairs(tabs) do
+            for i, tab in ipairs(tabs) do
                 local win = vim.api.nvim_tabpage_get_win(tab)
                 local buf = vim.api.nvim_win_get_buf(win)
-                local name = vim.api.nvim_buf_get_name(buf)
+                local full_path = vim.api.nvim_buf_get_name(buf) -- full path for previewer
+                -- local name = vim.api.nvim_buf_get_name(buf)
                 table.insert(results, {
                     tab = tab,
-                    name = name ~= "" and vim.fn.fnamemodify(name, ":t") or "[No Name]",
+                    bufnr = buf,
+                    index = i,
+                    path = full_path, -- saving the path
+                    name = full_path ~= "" and vim.fn.fnamemodify(full_path, ":t") or "[No Name]",
                 })
             end
 
@@ -62,18 +68,24 @@ return {
                     results = results,
                     entry_maker = function(entry)
                         return {
-                            value = entry.tab,
-                            display = entry.name,
+                            -- value = entry.tab,
+                            -- display = entry.name,
+                            value = entry,
+                            display = string.format("%d: %s", entry.index, entry.name),
                             ordinal = entry.name,
+                            path = entry.path,
+                            bufnr = entry.bufnr, -- important for preview
                         }
                     end,
                 }),
                 sorter = conf.generic_sorter({}),
+                -- previewer = previewers.vim_buffer_cat.new({}),
+                previewer = conf.file_previewer({}),
                 attach_mappings = function(_, map)
                     map("i", "<CR>", function(prompt_bufnr)
-                        local selection = require("telescope.actions.state").get_selected_entry()
-                        require("telescope.actions").close(prompt_bufnr)
-                        vim.api.nvim_set_current_tabpage(selection.value)
+                        local selection = action_state.get_selected_entry()
+                        actions.close(prompt_bufnr)
+                        vim.api.nvim_set_current_tabpage(selection.value.tab)
                     end)
                     return true
                 end,
