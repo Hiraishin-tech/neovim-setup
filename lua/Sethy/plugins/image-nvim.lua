@@ -10,7 +10,7 @@ return {
         priority = 1001,
         opts = {
             rocks = { "magick" },
-            hererocks = true,  -- Lets lazy.nvim install the correct lua version
+            hererocks = true, -- Lets lazy.nvim install the correct lua version
         },
     },
     -- requires pngpaste ( On Linux wayland install wl-clipboard, On MacOS brew install pngpaste )
@@ -38,7 +38,7 @@ return {
     --
     --         -- dir_path = function()
     --         --     local cwd = vim.fn.getcwd()
-    --         --     local vault_name = "sethVault"  -- obsidian vault dir 
+    --         --     local vault_name = "sethVault"  -- obsidian vault dir
     --         --     local vault_images_path = "Archives/All-Vault-Images/"
     --         --
     --         --     if cwd:match(vault_name) then
@@ -46,7 +46,7 @@ return {
     --         --     else
     --         --         return "assets"
     --         --     end
-    --         -- end 
+    --         -- end
     --         dir_path = function()
     --             local cwd = vim.fn.getcwd()
     --             local vault_name = "Pictures"
@@ -140,7 +140,8 @@ return {
                 tmux_show_only_in_active_window = true,
 
                 -- render image files as images when opened
-                hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.avif" },
+                -- TODO: add support for rendering .ico files
+                hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.avif", },
             })
         end,
     },
